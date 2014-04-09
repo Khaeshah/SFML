@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Game {
+class Game : private sf::NonCopyable {
 	public:
 		Game();
 		void run();
@@ -12,15 +12,26 @@ class Game {
 
         void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 		void processEvents();
-		void update();
-		void render();
+		void update(sf::Time elapsedTime);
+        void updateStatistics(sf::Time elapsedTime);
+        void render();
+
+
+		static const float PlayerSpeed;
+		static const sf::Time TimePerFrame;
 
 		sf::RenderWindow mWindow;
-		sf::CircleShape mPlayer;
-        bool mIsMovingUp = false;
-        bool mIsMovingDown = false;
-        bool mIsMovingLeft = false;
-        bool mIsMovingRight = false;
+        sf::Texture mTexture;
+        sf::Sprite mPlayer;
+        sf::Font mFont;
+        sf::Text mStatisticsText;
+        sf::Time mStatisticsUpdateTime;
+        std::size_t mStatisticsNumFrames;
+
+		bool mIsMovingUp;
+		bool mIsMovingDown;
+		bool mIsMovingLeft;
+		bool mIsMovingRight;
 };
 
 
