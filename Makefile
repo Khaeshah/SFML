@@ -39,7 +39,7 @@ MOVE          = mv -f
 CHK_DIR_EXISTS= test -d
 MKDIR         = mkdir -p
 
-####### Output directory
+####### Output directory test
 
 OBJECTS_DIR   = ./
 
